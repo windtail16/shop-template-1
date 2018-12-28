@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Api from "@/common/api";
 
 /* Layout */
 import Top from '@/components/layout/top/'
@@ -14,6 +13,9 @@ import ShopDetail from '@/components/shop/detail'
 import News from '@/components/news/'
 import NewsDetail from '@/components/news/detail'
 import About from '@/components/about/'
+import Signin from '@/components/signin/'
+import Signup from '@/components/signup/'
+import Cart from '@/components/cart/'
 
 /* Router View Set */
 function COMMON_LAYOUT (Content) {
@@ -54,6 +56,21 @@ export default new Router({
       path: '/about/',
       name: 'About',
       components: COMMON_LAYOUT(About)
+    },
+    {
+      path: '/signin/',
+      name: 'Signin',
+      components: COMMON_LAYOUT(Signin)
+    },
+    {
+      path: '/signup/',
+      name: 'Signup',
+      components: COMMON_LAYOUT(Signup)
+    },
+    {
+      path: '/cart/',
+      name: 'Cart',
+      components: COMMON_LAYOUT(Cart)
     },
     {
       path: '/hello',
