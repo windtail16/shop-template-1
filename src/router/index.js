@@ -17,8 +17,15 @@ import Signin from '@/components/signin/'
 import Signup from '@/components/signup/'
 import Cart from '@/components/cart/'
 
+/* Dash board */
+import Dashboard from '@/components/dashboard/'
+
 /* Router View Set */
 function COMMON_LAYOUT (Content) {
+  return {top: Top, Content, bottom: Bottom}
+}
+
+function DASHBOARD_LAYOUT (Content) {
   return {top: Top, Content, bottom: Bottom}
 }
 
@@ -73,9 +80,14 @@ export default new Router({
       components: COMMON_LAYOUT(Cart)
     },
     {
-      path: '/hello',
+      path: '/dashboard/',
+      name: 'Dashboard',
+      components: DASHBOARD_LAYOUT(Dashboard)
+    },
+    {
+      path: '/hello/',
       name: 'HelloWorld',
-      component: HelloWorld
+      component: COMMON_LAYOUT(HelloWorld)
     }
   ]
 })
