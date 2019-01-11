@@ -27,8 +27,8 @@
                         <b-btn variant="outline-secondary"><i class="fas fa-angle-down"></i></b-btn>
                     </b-input-group-append>
                 </b-input-group>
-                <b-button>구매하기</b-button>
-                <b-button>장바구니에 담기</b-button>
+                <b-button v-on:click="buy">구매하기</b-button>
+                <b-button v-on:click="inCart">장바구니에 담기</b-button>
             </div>
             <!-- ORDER UNIT//E -->
           </b-col>
@@ -48,7 +48,15 @@ export default {
     return {
         quantity:'0'
     }
-  }
+  },
+  methods: {
+      buy: function() {
+          alert('구매');
+      },
+      inCart: function() {
+          alert('장바구니에 담았습니다.');
+      }
+  },
 }
 </script>
 

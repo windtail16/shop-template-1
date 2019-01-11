@@ -7,7 +7,7 @@
       <h4>패스워드</h4>
       <input type="password" v-model="password"/>
       <div><button @click="signIn()">로그인</button></div>
-      
+      <router-link to="/signup">회원가입</router-link>
     </b-container>
   </div>
 </template>
