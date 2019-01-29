@@ -10,13 +10,15 @@ import Api from "@/common/api";
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VuePaginate from 'vue-paginate'
 
 import './assets/css/common.css'
 
 Vue.config.productionTip = false
 
-Vue.use(BootstrapVue);
-Vue.use(Vuex);
+Vue.use(BootstrapVue)
+Vue.use(Vuex)
+Vue.use(VuePaginate)
 
 /* eslint-disable no-new */
 new Vue({

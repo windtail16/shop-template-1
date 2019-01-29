@@ -10,38 +10,50 @@
       </b-nav>
       <!-- LIST FILTER//E -->
       <!-- GOODS LIST//S -->
-      <b-row>
-        <b-col cols="6" md="3" :key="index" :value="item.value" :text="item.text" v-for="(item,index) in goodsList" >
+      <paginate tag="b-row" :per="16" name="items" :list="items">
+        <b-col cols="6" md="3" :key="index" v-for="(item,index) in paginated('items')">
           <router-link :to="`/shop/${item.id}`" class="card mb-2">
-            <img class="card-img-top" :src="item.imgSrc" :alt="item.title">
-            <div class="card-body">
-              <h5 class="card-title">{{ item.title }}</h5>
-              <p class="card-text">{{ item.price }} 원</p>
-            </div>
-          </router-link>
+              <img class="card-img-top" :src="item.imgSrc" :alt="item.title">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.title }}</h5>
+                <p class="card-text">{{ item.price }} 원</p>
+              </div>
+            </router-link>
         </b-col>
-      </b-row>
+      </paginate>
       <!-- GOODS LIST//E -->
+      <!-- PAGINATION//S -->
+        <paginate-links
+          for="items"
+          :show-step-links="true"
+          :classes="{
+            'ul': ['pagination', 'b-pagination', 'pagination-md', 'justify-content-center'],
+            'li': 'page-item',
+            'a': ['page-link','btn-primary']
+          }"
+        >
+        </paginate-links>
+      
+      <!-- PAGINATION//S -->
     </b-container>
   </div>
 </template>
 
 <script>
+import Goods from "../../common/goods.json"
 export default {
   name: 'Goods',
   data () {
     return {
-      goodsList:[
-        {id:'1', category:'category1', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'2', category:'category2', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'3', category:'category4', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'4', category:'category1', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'5', category:'category2', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'6', category:'category1', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'7', category:'category3', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'8', category:'category3', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'}
-      ]
+      currentPage: 1,
+      items: Goods,
+      paginate: ['items']
     }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.shown = true
+    }, 1000)
   }
 }
 </script>

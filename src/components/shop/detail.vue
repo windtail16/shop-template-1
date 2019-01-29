@@ -42,20 +42,38 @@
 </template>
 
 <script>
+import Goods from "../../common/goods.json"
+
 export default {
   name: 'Detail',
   data () {
     return {
-        quantity:'0'
+        quantity:'0',
+        goods: []
     }
   },
+  created() {
+    this.fetchData()
+  },
+  watch: {
+    // 라우터 객체를 감시하고 있다가 fetchData() 함수를 호출한다
+    '$route': 'fetchData'
+  },
+  
   methods: {
-      buy: function() {
-          alert('구매');
-      },
-      inCart: function() {
-          alert('장바구니에 담았습니다.');
-      }
+    buy: function() {
+      alert('구매');
+    },
+    inCart: function() {
+      alert('장바구니에 담았습니다.');
+    },
+    fetchData () {
+      this.post = null
+      this.loading = true
+
+      console.log(this.$route.params.id);
+      
+    }
   },
 }
 </script>

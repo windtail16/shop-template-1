@@ -6,7 +6,7 @@
     </div>
     <b-container>
       <b-row>
-        <b-col cols="6" md="3" :key="index" :value="item.value" :text="item.text" v-for="(item,index) in goodsList" >
+        <b-col cols="6" md="3" :key="index" :value="item.value" :text="item.text" v-for="(item,index) in even(goodsList).slice(0, 8)" >
           <router-link :to="`/shop/${item.id}`" class="card mb-2">
             <img class="card-img-top" :src="item.imgSrc" :alt="item.title">
             <div class="card-body">
@@ -17,28 +17,30 @@
         </b-col>
       </b-row>
     </b-container>
-    <h1></h1>
   </div>
 </template>
 
 <script>
+import Goods from "../../common/goods.json"
 export default {
   name: 'Goods',
   data () {
     return {
       title: 'main goods',
-      goodsList:[
-        {id:'1', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'2', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'3', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'4', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'5', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'6', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'7', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'},
-        {id:'8', title:'상품명', imgSrc:'https://picsum.photos/600/300/?image=25',price:'40000'}
-      ]
+      goodsList: Goods
     }
-  }
+  },
+  computed: {
+    
+  },
+  methods: {
+    even: function(arr) {
+      // Set slice() to avoid to generate an infinite loop!
+      return arr.slice().sort(function(a, b) {
+        return b.id - a.id;
+      });
+    }
+  },
 }
 </script>
 

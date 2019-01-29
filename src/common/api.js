@@ -1,3 +1,4 @@
+/*
 import firebase from 'firebase'
 import firebaseAuth from 'firebase/auth'
 
@@ -14,3 +15,4 @@ firebase.initializeApp(config);
 export default {
     
 }
+*/
