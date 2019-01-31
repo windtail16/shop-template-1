@@ -44,6 +44,7 @@
 <script>
 import Goods from "../../common/goods.json"
 
+
 export default {
   name: 'Detail',
   data () {
@@ -68,11 +69,9 @@ export default {
       alert('장바구니에 담았습니다.');
     },
     fetchData () {
-      this.post = null
-      this.loading = true
-
-      console.log(this.$route.params.id);
-      
+      //console.log(this.$route.params.id);
+      //var id = this.$route.params.id
+      console.log(Goods);
     }
   },
 }
