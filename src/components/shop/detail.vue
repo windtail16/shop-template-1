@@ -20,13 +20,14 @@
                 </h5>
                 <b-input-group class="mb-2">
                     <b-input-group-prepend>
-                        <b-btn variant="outline-secondary"><i class="fas fa-angle-up"></i></b-btn>
+                        <b-btn variant="outline-secondary" @click="decrementCounter"><i class="fas fa-angle-down"></i></b-btn>
                     </b-input-group-prepend>
-                    <b-form-input type="number" min="0.00" v-model="quantity"></b-form-input>
+                    <b-input type="text" v-model="quantity" readonly></b-input>
                     <b-input-group-append>
-                        <b-btn variant="outline-secondary"><i class="fas fa-angle-down"></i></b-btn>
+                        <b-btn variant="outline-secondary" @click="incrementCounter"><i class="fas fa-angle-up"></i></b-btn>
                     </b-input-group-append>
                 </b-input-group>
+                <p>최대구매수량: {{max}}</p>
                 <b-button v-on:click="buy">구매하기</b-button>
                 <b-button v-on:click="inCart">장바구니에 담기</b-button>
             </div>
@@ -44,17 +45,23 @@
 <script>
 import Goods from "../../common/goods.json"
 
-
 export default {
   name: 'Detail',
   data () {
     return {
-        quantity:'0',
-        goods: []
+      quantity:'0',
+      max:'10',
+      min:'0',
+      goods: []
     }
   },
   created() {
-    this.fetchData()
+    let url = "../../common/goods.json"
+    this.$http.get(url).then((result) => {
+      console.log(result);
+    }).catch((err) => {
+      
+    })
   },
   watch: {
     // 라우터 객체를 감시하고 있다가 fetchData() 함수를 호출한다
@@ -68,10 +75,17 @@ export default {
     inCart: function() {
       alert('장바구니에 담았습니다.');
     },
-    fetchData () {
-      //console.log(this.$route.params.id);
-      //var id = this.$route.params.id
-      console.log(Goods);
+    incrementCounter() {
+      if (this.quantity >= this.max) {
+        alert('최대수량초과')
+      } else {
+        this.quantity++;
+      }
+    },
+    decrementCounter() {
+      if (this.quantity > this.min) {
+        this.quantity--;
+      } 
     }
   },
 }

@@ -34,8 +34,7 @@ export default {
     
   },
   methods: {
-    even: function(arr) {
-      // Set slice() to avoid to generate an infinite loop!
+    even: arr => {
       return arr.slice().sort(function(a, b) {
         return b.id - a.id;
       });
